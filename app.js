@@ -18,7 +18,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  store: MongoStore.create({mongoUrl : 'mongodb+srv://randil:randil@cluster0.xrp7coq.mongodb.net/passport?retryWrites=true&w=majority', collectionName: "sessions"}),
+  store: MongoStore.create({mongoUrl : '', collectionName: "sessions"}),mongodb+srv:// enter your MongoDB connection string as mongoUrl here example:(YOURUSERNAME:YOURPASSWORD@cluster0.test.mongodb.net/DBNAME?retryWrites=true&w=majority)
   cookie: { 
     maxAge : 1000 * 60 * 60 *24
    }

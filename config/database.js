@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://randil:randil@cluster0.xrp7coq.mongodb.net/passport?retryWrites=true&w=majority')
+mongoose.connect('') // Enter the mongodb connection string here
 
 const userSchema = mongoose.Schema({
     username : String,
