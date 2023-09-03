@@ -82,3 +82,7 @@ body {
       text-align: center;
     }
   }
+  .username{
+    text-transform: uppercase;
+    color:#68c950
+  }

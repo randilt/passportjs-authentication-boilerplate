@@ -38,15 +38,35 @@ app.get('/register', (req,res) => {
 })
 app.post('/login', passport.authenticate('local', {successRedirect: '/home'}))
 
-app.post('/register', (req,res) => {
-    let user = new UserModel({
-        username : req.body.username,
-        password : hashSync(req.body.password, 10),
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body;
 
-    })
-    user.save().then(user=> console.log(user));
-    res.send("{success:true}")
-})
+  try {
+    // Check if the username is already registered
+    const existingUser = await UserModel.findOne({ username: username });
+
+    if (existingUser) {
+      // If a user with the same username already exists, send a response
+      return res.status(400).render('register_username_exists.ejs');
+    }
+
+    // If the username is not registered, proceed with user registration
+    const newUser = new UserModel({
+      username: username,
+      password: hashSync(password, 10),
+    });
+
+    await newUser.save();
+    console.log('User registered:', newUser.username);
+    // Redirect to the login page after successful registration
+    res.redirect('/login');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Registration failed');
+  }
+});
+
+
 app.get('/logout', function(req, res) {
     req.logout(function(err) {
       if (err) {
@@ -69,7 +89,7 @@ app.get('/logout', function(req, res) {
   app.get('/home', ensureAuthenticated, (req, res) => {
     console.log(req.session);
     console.log(req.user);
-    res.render('home.ejs');
+    res.render('home.ejs', {user: req.user});
   });
 
 app.listen(port, () =>{

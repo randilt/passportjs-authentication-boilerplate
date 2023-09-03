@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Now</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form action="/register" method="POST">
+            <h1>Register </h1>
+            <br>
+            <p>Username already exists. Please login or use a different username to continue.</p>
+            <div class="input-box">
+                <input name="username" type="text" placeholder="Username" required>
+            </div>
+            <div class="input-box">
+                <input name="password" type="password" placeholder="Password" required>
+            </div>
+            <div class="remember-forgot">
+         
+                
+            </div>
+            <button type="submit" class="btn">Register</button>
+
+            <div class="register-link">
+                <p>Already have an account?<a href="/login"> Login</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
